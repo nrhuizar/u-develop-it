@@ -64,14 +64,23 @@ app.get('/api/candidate/:id', (req, res) => {
     });
 });
 
-// DELETE a candidate
-// db.run(`DELETE FROM candidates WHERE id = ?`, 1, function(err, result) {
-//     if (err) {
-//         console.log(err);
-//     }
-//     console.log(result, this, this.changes);
-// });
-
+// Delete a candidate
+app.delete('/api/candidate/:id', (req, res) => {
+    const sql = `DELETE FROM candidates WHERE id = ?`;
+    const params = [req.params.id];
+    db.run(sql, params, function(err, result) {
+      if (err) {
+        res.status(400).json({ error: res.message });
+        return;
+      }
+  
+      res.json({
+        message: 'successfully deleted',
+        changes: this.changes
+      });
+    });
+  });
+  
 // Default response for any other request (Not Found) Catch all
 app.use((req,res) => {
     res.status(404).end();
