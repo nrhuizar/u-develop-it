@@ -90,7 +90,6 @@ app.post('/api/candidate', ({ body }, res) => {
 
 app.put('/api/candidate/:id', (req, res) => {
   const errors = inputCheck(req.body, 'party_id');
-
   
   if (errors) {
     res.status(400).json({ error: errors });
