@@ -23,10 +23,10 @@ router.get('/candidates', (req, res) => {
         data: rows
       });
     });
-  });
+});
   
-  // Get single candidate
-  router.get('/candidate/:id', (req, res) => {
+// Get single candidate
+router.get('/candidate/:id', (req, res) => {
     const sql = `SELECT candidates.*, parties.name 
                AS party_name 
                FROM candidates 
@@ -45,7 +45,7 @@ router.get('/candidates', (req, res) => {
         data: row
       });
     });
-  });
+});
   
   
   // Create a candidate
